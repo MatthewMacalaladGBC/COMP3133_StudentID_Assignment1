@@ -12,6 +12,9 @@ const app = express();
 async function startServer() {
     await connectDB();
 
+    app.use(express.json({ limit: '10mb' }));
+    app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
     // Define Apollo Server
     const server = new ApolloServer({
       typeDefs,
